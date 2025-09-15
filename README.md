@@ -1,3 +1,6 @@
+Forked!!
+Updated to GoldHEN 2.4B16.8
+
 # PSFree
 PSFree is a unstable and work in progress jailbreak multi firmware website for the PlayStation 4 and the PlayStation 5.
 
@@ -30,7 +33,7 @@ This repo only support PS4 for now.
 # How to run
 
 ## Website
-[Click Here](https://nazky.github.io/PSFree/)
+[Click Here](https://moamendigitech.github.io/PSFreee/)
 
 ## Locally
 
