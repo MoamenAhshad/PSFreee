@@ -32,10 +32,10 @@ document.getElementById('generate-cache-btn').addEventListener('click', () => {
   fetch('/generate_manifest', { method: 'POST' })
     .then(response => response.json())
     .then(data => {
-      alert(data.message);
+      alert(data.message); // هذه الرسالة من السيرفر، قد تحتاج ترجمتها في السيرفر نفسه
     })
     .catch(error => {
-      alert('Error: ' + error + "\nThis option only work on local server !\nPlease make sure you'r server is up.");
+      alert('خطأ: ' + error + "\nهذا الخيار يعمل فقط على الخادم المحلي!\nيرجى التأكد أن الخادم يعمل.");
     });
 });
 
@@ -43,10 +43,10 @@ document.getElementById('update-exploit').addEventListener('click', () => {
   fetch('/update_exploit', { method: 'POST' })
     .then(res => res.json())
     .then(data => {
-      document.getElementById('console').textContent = data.results.join('\n') + "\nPlease don't forget to update the cache !";
+      document.getElementById('console').textContent = data.results.join('\n') + "\nيرجى عدم نسيان تحديث التخزين المؤقت!";
     })
     .catch(err => {
-      alert('Error: ' + err + "\nThis option only work on local server !\nPlease make sure you'r server is up.");
+      alert('خطأ: ' + err + "\nهذا الخيار يعمل فقط على الخادم المحلي!\nيرجى التأكد أن الخادم يعمل.");
     });
 });
 
@@ -122,7 +122,9 @@ function CheckFW() {
       fwVersion === '8.50' || fwVersion === '8.52' || fwVersion === '9.04' ||
       fwVersion === '9.50' || fwVersion === '9.51'
     ) {
-      document.getElementById('PS4FW').textContent = `PS4 FW: ${fwVersion} | Compatible`;
+      document.getElementById('PS4FW').textContent = `إصدار النظام: ${fwVersion} | متوافق`;
+      document.getElementById('PS4FW').style.direction = 'rtl';
+      document.getElementById('PS4FW').style.unicodeBidi = 'plaintext';
       document.getElementById('PS4FW').style.color = 'green';
       ps4fw = fwVersion.replace('.', '');
       document.getElementById('install-psfrf').style.display = 'flex';
@@ -133,7 +135,9 @@ function CheckFW() {
         document.getElementById('linuxb').style.display = 'flex';
       }
     } else {
-      document.getElementById('PS4FW').textContent = `PS4 FW: ${fwVersion || 'Unknown'} | Incompatible`;
+      document.getElementById('PS4FW').textContent = `إصدار النظام: ${fwVersion || 'غير معروف'} | غير متوافق`;
+      document.getElementById('PS4FW').style.direction = 'rtl';
+      document.getElementById('PS4FW').style.unicodeBidi = 'plaintext';
       document.getElementById('PS4FW').style.color = 'red';
 
       elementsToHide.forEach(id => {
@@ -144,15 +148,17 @@ function CheckFW() {
 
     document.title = "PSFree | " + fwVersion;
   } else {
-    let platform = 'Unknown platform';
+    let platform = 'منصة غير معروفة';
 
-    if (/Android/.test(userAgent)) platform = 'Android';
+    if (/Android/.test(userAgent)) platform = 'أندرويد';
     else if (/iPhone|iPad|iPod/.test(userAgent)) platform = 'iOS';
-    else if (/Macintosh/.test(userAgent)) platform = 'MacOS';
-    else if (/Windows/.test(userAgent)) platform = 'Windows';
-    else if (/Linux/.test(userAgent)) platform = 'Linux';
+    else if (/Macintosh/.test(userAgent)) platform = 'ماك أو إس';
+    else if (/Windows/.test(userAgent)) platform = 'ويندوز';
+    else if (/Linux/.test(userAgent)) platform = 'لينكس';
 
-    document.getElementById('PS4FW').textContent = `You're not on a PS4, platform: ${platform}`;
+    document.getElementById('PS4FW').textContent = `أنت لست على جهاز PS4، المنصة: ${platform}`;
+    document.getElementById('PS4FW').style.direction = 'rtl';
+    document.getElementById('PS4FW').style.unicodeBidi = 'plaintext';
     document.getElementById('PS4FW').style.color = 'red';
 
     elementsToHide.forEach(id => {
@@ -256,18 +262,21 @@ function choosejb(hen) {
 
 function showpayloads() {
   if (document.getElementById('payloadsbtn').textContent == 'Payloads') {
-  document.getElementById('jailbreak-page').style.display = 'none';
-  document.getElementById('PS4FW').style.display = 'none';
-  document.getElementById('payloads-page').style.display = 'block';
-  document.getElementById('payloadsbtn').textContent = 'Jailbreak';
-  localStorage.setItem('visibleDiv', 'payloads-page');
-  }else{
-  document.getElementById('jailbreak-page').style.display = 'block';
-  document.getElementById('PS4FW').style.display = 'flex';
-  document.getElementById('payloads-page').style.display = 'none';
-  document.getElementById('payloadsbtn').textContent = 'Payloads';
-  localStorage.setItem('visibleDiv', 'jailbreak-page');
-
+    document.getElementById('jailbreak-page').style.display = 'none';
+    document.getElementById('PS4FW').style.display = 'none';
+    document.getElementById('payloads-page').style.display = 'block';
+    document.getElementById('payloadsbtn').textContent = 'كسر الحماية';
+    document.getElementById('payloadsbtn').style.direction = 'rtl';
+    document.getElementById('payloadsbtn').style.unicodeBidi = 'plaintext';
+    localStorage.setItem('visibleDiv', 'payloads-page');
+  } else {
+    document.getElementById('jailbreak-page').style.display = 'block';
+    document.getElementById('PS4FW').style.display = 'flex';
+    document.getElementById('payloads-page').style.display = 'none';
+    document.getElementById('payloadsbtn').textContent = 'الحزم';
+    document.getElementById('payloadsbtn').style.direction = 'rtl';
+    document.getElementById('payloadsbtn').style.unicodeBidi = 'plaintext';
+    localStorage.setItem('visibleDiv', 'jailbreak-page');
   };
   CheckFW();
 }
@@ -322,11 +331,11 @@ function loadajbsettings(){
 
   if (ckbaj.checked) {
     if (sessionStorage.getItem('jbsuccess')) {
-      consoleDev.append(`Already jailbroken !\n`);
+      consoleDev.append(`تم كسر الحماية بالفعل!\n`);
       consoleDev.scrollTop = consoleDev.scrollHeight;
     } else {
       document.getElementById('jailbreak').style.display = 'none';
-      consoleDev.append(`Auto jailbreaking... Please wait for a few seconds.\n`);
+      consoleDev.append(`يتم كسر الحماية تلقائيًا... يرجى الانتظار لبضع ثوانٍ.\n`);
       consoleDev.scrollTop = consoleDev.scrollHeight;
       setTimeout(() => {
         jailbreak();
@@ -352,11 +361,16 @@ function loadajbsettings(){
     document.getElementById('PS4FW').style.display = 'flex';
     document.getElementById('payloads-page').style.display = 'none';
     document.getElementById('payloadsbtn').textContent = 'Payloads';
+    // إذا أردت ضبط اتجاه زر الحزم عند العودة للإنجليزي أضف:
+    // document.getElementById('payloadsbtn').style.direction = 'ltr';
+    // document.getElementById('payloadsbtn').style.unicodeBidi = '';
   } else {
     document.getElementById('jailbreak-page').style.display = 'none';
     document.getElementById('PS4FW').style.display = 'none';
     document.getElementById('payloads-page').style.display = 'block';
-    document.getElementById('payloadsbtn').textContent = 'Jailbreak';
+    document.getElementById('payloadsbtn').textContent = 'كسر الحماية';
+    document.getElementById('payloadsbtn').style.direction = 'rtl';
+    document.getElementById('payloadsbtn').style.unicodeBidi = 'plaintext';
     localStorage.setItem('visibleDiv', 'payloads-page');
   }
 }
@@ -364,7 +378,7 @@ function loadajbsettings(){
 async function jailbreak() {
   try {
     if (sessionStorage.getItem('jbsuccess')) {
-      consoleDev.append(`Aleardy jailbroken !\n`);
+      consoleDev.append(`تم كسر الحماية بالفعل!\n`);
       consoleDev.scrollTop = consoleDev.scrollHeight;
     } else {
       document.getElementById('jailbreak').style.display = 'none';
