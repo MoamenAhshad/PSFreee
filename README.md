@@ -64,8 +64,8 @@ sudo chmod +x start_server.sh
 ## Forked!!
 Project updated to GoldHEN 2.4B16.8
 
-# PSFree
-PSFree is a multi-firmware jailbreak platform for PlayStation 4 (and future support for PS5), aiming to provide an open-source and user-friendly experience. The project is still under development and may have some issues.
+# PSFreee
+PSFreee is a multi-firmware jailbreak platform for PlayStation 4 (and future support for PS5), aiming to provide an open-source and user-friendly experience. The project is still under development and may have some issues.
 
 This work is based on the efforts of other repositories:
 - [PSFree from Kame](https://github.com/kmeps4/PSFree)
